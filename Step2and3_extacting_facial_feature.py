@@ -22,4 +22,4 @@ for face_landmarks in face_landmarks_list:
     cv2.imshow("Facial Feature", image)
     k = cv2.waitKey(0)
 # dumping ouput to a image file
-cv2.imwrite("images/step2_output.jpg", image)
+cv2.imwrite("images/step2and3_output.jpg", image)
