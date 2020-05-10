@@ -11,6 +11,10 @@ points are less than some pre set threshold. This threshold is used in previous
 step by Nerual network.
 Face-recongintion library uses this threshold as 0.6.
 
+This code will not work for the images that are samll, 
+to make it work we will upsample the images and detect faces from that upsampled
+image and then pass it generate face endcodings after this change system will recognise 
+faces from small images.
 '''
 
 import face_recognition
@@ -34,9 +38,12 @@ known_faces_dataset = [
 ]
 
 # load some unknown image and get its face encodings
-unknown_image = face_recognition.load_image_file('images/images_for_recognition/unknown_2.jpg')
+unknown_image = face_recognition.load_image_file('images/images_for_recognition/unknown_7.jpg')
 
-unknown_face_encodings = face_recognition.face_encodings(unknown_image)
+# resizing the images and extracting face loctions
+unknown_face_locations = face_recognition.face_locations(unknown_image, number_of_times_to_upsample=2)
+# passing extracted loaction for get faceencoding of it
+unknown_face_encodings = face_recognition.face_encodings(unknown_image,known_face_locations=unknown_face_locations)
 
 #there could be multiple faces in the unknown image we have iterate thought each face encoding 
 # and search though our know person datasets
