@@ -22,4 +22,4 @@ for face_location in face_locations:
     cv2.rectangle(image, top_left, bottom_right, (0, 0, 255), 2)
     cv2.imshow("Face Detected", image)
     k = cv2.waitKey(0)
-cv2.imwrite("images/step1_output.jpg", image)
+cv2.imwrite("images/output/step1_output.jpg", image)
